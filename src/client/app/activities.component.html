@@ -1,0 +1,30 @@
+<div>
+    <ul class="activities">
+        <li *ngFor="let activity of activities" (click)="onSelect(activity)"
+            [class.selected]="activity == selectedActivity">
+            <button class="delete-button" (click)="deleteActivity(activity)">
+                Delete
+            </button>
+            <div class="activity-element">
+                <div class="badge">{{activity.id}}</div>
+                <div class="name">{{activity.name}}</div>
+            </div>
+        </li>
+    </ul>
+    <div class="editarea">
+        <button (click)="enableAddMode()">Add new activity</button>
+        <div *ngIf="selectedActivity">
+            <div class="editFields">
+                <div>
+                    <label>id: </label>
+                    <input [(ngModel)]="selectedActivity.id" placeholder="id" *ngIf="addingActivity" />
+                    <label *ngIf="!addingActivity" class="value">{{selectedActivity.id}}</label>
+                </div>
+                <div>
+                    <label>name: </label>
+                    <input [(ngModel)]="selectedActivity.name" placeholder="name" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -41,11 +41,27 @@ export class ActivitiesComponent implements OnInit {
   }
 
   save() {
-    // TODO:
+    if (this.addingActivity) {
+      this.activityService.addActivity(this.selectedActivity).subscribe(activity => {
+        this.addingActivity = false;
+        this.selectedActivity = null;
+        this.activities.push(activity);
+      });
+    } else {
+      this.activityService.updateActivity(this.selectedActivity).subscribe(activity => {
+        this.addingActivity = false;
+        this.selectedActivity = null;
+      });
+    }
   }
 
   deleteActivity(activity: Activity) {
-    // TODO:
+    this.activityService.deleteActivity(activity).subscribe(res => {
+      this.activities = this.activities.filter(a => a !== activity);
+      if (this.selectedActivity === activity) {
+        this.selectedActivity = null;
+      }
+    });
   }
 
 }

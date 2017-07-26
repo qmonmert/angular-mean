@@ -9,3 +9,9 @@
 * ng g c activities --flat
 * ng g cl activity
 * ng g s activity -m app.module
+
+* mongod
+* mongo
+* use MyActivities
+* db.Activities.insert({ "name": "bike1" })
+* db.Activities.find({})
